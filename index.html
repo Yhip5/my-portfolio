@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#10110f" />
+<title>STUDIO / 个人创意作品集</title>
+<style>
+:root{--bg:#10110f;--panel:#191a17;--text:#f2f1eb;--muted:#a6a79d;--lime:#d7ff64;--line:rgba(242,241,235,.14);--display:Impact,"Arial Narrow",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,"Microsoft YaHei",sans-serif;overflow-x:hidden;cursor:none}a,button{color:inherit}a{text-decoration:none}button{font:inherit;cursor:none}.noise{position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+.cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--lime);pointer-events:none;z-index:1000;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}.cursor.big{width:48px;height:48px}
+.wrap{width:min(1240px,calc(100% - 64px));margin:auto}.nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:20}.logo{font-weight:900;letter-spacing:-1px;font-size:18px}.logo span{color:var(--lime)}.navlinks{display:flex;gap:32px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}.navlinks a{transition:color .2s}.navlinks a:hover{color:var(--lime)}.availability{font-size:11px;color:var(--lime);display:flex;align-items:center;gap:8px}.dot{width:7px;height:7px;background:var(--lime);border-radius:50%;box-shadow:0 0 12px var(--lime)}
+.hero{min-height:calc(100vh - 82px);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;position:relative;padding:80px 0 100px;overflow:hidden}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);display:flex;align-items:center;gap:12px}.eyebrow:before{content:"";width:26px;height:1px;background:var(--lime)}h1{font-size:clamp(68px,10.5vw,150px);line-height:.82;letter-spacing:-.085em;margin:34px 0 30px;font-weight:900;text-transform:uppercase}.hero h1 .outline{color:transparent;-webkit-text-stroke:1px var(--text)}.hero h1 .lime{color:var(--lime)}.intro{max-width:420px;font-size:15px;line-height:1.8;color:var(--muted)}.hero-actions{display:flex;gap:14px;align-items:center;margin-top:32px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;gap:24px;padding:15px 18px;border:1px solid var(--line);font-size:12px;letter-spacing:.5px;transition:background .25s,color .25s,border .25s}.btn.primary{background:var(--lime);color:#111;border-color:var(--lime);font-weight:800}.btn:hover{background:var(--text);color:#111;border-color:var(--text)}.btn .arrow{font-size:18px}.hero-art{height:480px;position:relative;display:grid;place-items:center;perspective:800px}.orb{width:min(34vw,390px);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 25%,#f3ffc4 0,#d7ff64 9%,#77902e 24%,#242a1b 48%,#121310 70%);box-shadow:inset -35px -25px 60px #0009,0 0 100px #d7ff641c;animation:float 6s ease-in-out infinite;transform-style:preserve-3d}.orb:before,.orb:after{content:"";position:absolute;inset:-11%;border:1px solid #d7ff6466;border-radius:50%;transform:rotateX(66deg) rotateZ(-22deg)}.orb:after{inset:-19%;transform:rotateX(70deg) rotateZ(38deg);border-color:#f2f1eb44}.orbit-label{position:absolute;right:0;bottom:48px;font-family:var(--display);font-size:15px;letter-spacing:2px;writing-mode:vertical-rl;color:var(--muted)}.floating-tag{position:absolute;top:22%;left:0;background:var(--lime);color:#111;padding:12px 15px;font-size:10px;font-weight:900;letter-spacing:1px;transform:rotate(-8deg)}.hero-index{position:absolute;bottom:25px;left:0;right:0;display:flex;justify-content:space-between;color:var(--muted);font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;white-space:nowrap}.marquee-track{display:inline-flex;gap:30px;animation:marquee 24s linear infinite;font-family:var(--display);font-size:clamp(24px,3vw,42px);letter-spacing:1px}.marquee-track span:nth-child(even){color:var(--lime)}.marquee-track .star{font-family:Arial;color:var(--lime)}
+section{padding:110px 0}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:42px}.kicker{font-size:10px;letter-spacing:2px;color:var(--lime);text-transform:uppercase;margin-bottom:16px}.section-title{font-size:clamp(40px,6vw,76px);letter-spacing:-.065em;line-height:.92;margin:0;text-transform:uppercase}.section-note{max-width:260px;color:var(--muted);font-size:12px;line-height:1.7}
+.work-toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:10px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.upload-trigger{padding:13px 18px;white-space:nowrap;flex-shrink:0;background:var(--lime);border:1px solid var(--lime);color:#111;font-weight:800;min-height:46px;box-shadow:0 8px 24px #d7ff6420;transition:transform .2s,box-shadow .2s}.upload-trigger:hover{transform:translateY(-2px);box-shadow:0 12px 30px #d7ff6435}.upload-tip{font-size:11px;color:var(--muted);margin:0 0 28px}.filter{background:transparent;border:1px solid var(--line);padding:10px 15px;font-size:11px;color:var(--muted);transition:.2s}.filter.active,.filter:hover{background:var(--lime);color:#111;border-color:var(--lime)}
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:42px 20px}.project{min-width:0}.project-visual{aspect-ratio:1.25;position:relative;overflow:hidden;background:#222;isolation:isolate}.project-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0008);pointer-events:none}.project-visual .art{position:absolute;inset:0;transition:transform .65s cubic-bezier(.2,.7,.2,1)}.project:hover .art{transform:scale(1.055) rotate(-1deg)}.project-meta{display:flex;justify-content:space-between;align-items:center;padding-top:15px;gap:15px}.project-meta-main{min-width:0;flex:1}.project-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}.view-work{border:1px solid var(--line);background:transparent;color:var(--text);padding:10px 12px;font-size:11px;white-space:nowrap;transition:.2s}.view-work:hover{background:var(--lime);color:#111;border-color:var(--lime)}.view-work .arrow{color:var(--lime);margin-left:6px}.view-work:hover .arrow{color:#111}.project-title{font-size:clamp(18px,2.1vw,26px);font-weight:800;letter-spacing:-1px}.project-type{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:6px}.project-number{font-size:11px;color:var(--muted)}.project-open{position:absolute;z-index:2;right:18px;top:18px;width:42px;height:42px;border-radius:50%;background:var(--lime);color:#111;display:grid;place-items:center;font-size:20px;transform:translateY(8px);opacity:0;transition:.25s}.project:hover .project-open{opacity:1;transform:translateY(0)}
+/* Artwork panels */
+.art-video{background:linear-gradient(135deg,#d6ff65 0%,#a8c74d 35%,#20251a 35%,#111 100%)}.art-video .bigtype{position:absolute;left:7%;top:10%;font-size:clamp(45px,8vw,105px);font-weight:1000;line-height:.76;letter-spacing:-.09em;color:#10110f}.art-video .bigtype span{color:#f2f1eb}.art-video .play{position:absolute;right:12%;bottom:14%;width:90px;height:90px;border-radius:50%;background:#f2f1eb;display:grid;place-items:center;color:#111;font-size:26px;box-shadow:0 0 0 18px #f2f1eb22}
+.art-3d{background:radial-gradient(ellipse at 50% 45%,#a7c6ff 0,#5060b3 20%,#1b1b3c 52%,#0e0e18 100%)}.glass{position:absolute;width:43%;height:70%;left:29%;top:15%;border-radius:48% 48% 18% 18%;background:linear-gradient(100deg,#d7e8ff88,#fff1 25%,#111a 55%,#b7cfff99);border:1px solid #d9e5ff99;box-shadow:inset 12px 0 20px #fff3,0 30px 60px #05051099;transform:rotate(18deg)}.glass:after{content:"";position:absolute;inset:12%;border:1px solid #fff7;border-radius:inherit}.art-3d .tiny{position:absolute;left:8%;bottom:10%;color:white;font-size:10px;letter-spacing:3px}
+.art-ai{background:linear-gradient(120deg,#ffb0a3,#d85b75 48%,#502346)}.flower{position:absolute;width:210px;height:210px;left:50%;top:48%;transform:translate(-50%,-50%);filter:drop-shadow(0 20px 20px #41102b66)}.petal{position:absolute;left:50%;top:50%;width:58px;height:105px;border-radius:60% 60% 45% 45%;background:linear-gradient(130deg,#ffe8c5,#ff6b8d 45%,#7d235e);transform-origin:50% 100%;border:1px solid #ffd6d866}.art-ai .caption{position:absolute;left:7%;top:8%;font-family:var(--display);font-size:clamp(28px,4vw,52px);line-height:.9;color:#43182d}
+.art-brand{background:#e7e3d8;color:#1a1a17}.brand-circle{position:absolute;width:280px;height:280px;border:1px solid #1a1a1744;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.brand-circle:before,.brand-circle:after{content:"";position:absolute;inset:20px;border:1px solid #1a1a1733;border-radius:50%}.brand-circle:after{inset:55px}.brand-word{position:absolute;left:8%;top:35%;font-weight:1000;font-size:clamp(44px,8vw,95px);letter-spacing:-.09em;line-height:.8}.brand-word span{display:block;font-size:12px;letter-spacing:5px;margin-top:16px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}.about-copy{font-size:clamp(20px,2.5vw,32px);line-height:1.45;letter-spacing:-.7px}.about-copy em{color:var(--lime);font-style:normal}.about-small{font-size:13px;color:var(--muted);line-height:1.9;max-width:460px;margin-top:24px}.skill-list{border-top:1px solid var(--line)}.skill{padding:20px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;font-size:13px}.skill span:last-child{color:var(--muted);font-size:11px}
+.contact{background:var(--lime);color:#111;padding:85px 0}.contact .kicker{color:#303b17}.contact-title{font-size:clamp(48px,9vw,120px);line-height:.83;letter-spacing:-.09em;margin:0 0 35px;font-weight:1000}.contact-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}.contact-text{max-width:320px;font-size:13px;line-height:1.7}.contact .btn{border-color:#111;color:#111}.contact .btn:hover{background:#111;color:var(--lime)}
+footer{padding:25px 0;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase}.socials{display:flex;gap:20px}.socials a:hover{color:var(--lime)}
+.modal{position:fixed;inset:0;z-index:200;background:#000b;display:none;place-items:center;padding:24px;backdrop-filter:blur(10px)}.modal.open{display:grid}.modal-box{width:min(760px,100%);max-height:92vh;overflow:auto;background:#1b1c18;border:1px solid var(--line);padding:32px;position:relative;animation:pop .25s ease}.preview-media{display:none;width:100%;max-height:62vh;object-fit:contain;background:#080908;margin:18px 0 8px}.preview-media.active{display:block}.preview-image{display:none;width:100%;max-height:62vh;object-fit:contain;background:#080908;margin:18px 0 8px}.preview-image.active{display:block}.viewer-note{font-size:10px;color:var(--muted);margin-top:18px}.modal-close{position:absolute;right:18px;top:18px;border:1px solid var(--line);background:transparent;width:38px;height:38px;font-size:20px}.modal-box h3{font-size:36px;letter-spacing:-2px;margin:15px 0}.modal-box p{color:var(--muted);line-height:1.8;font-size:14px}.upload-box{max-height:90vh;overflow:auto;width:min(680px,100%);border:1px solid #d7ff6455;box-shadow:0 24px 100px #0009}.upload-box:before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--lime),#7c913d,transparent)}.field-label{display:block;font-size:11px;color:var(--text);margin:18px 0 8px;letter-spacing:.5px}.drop-zone{min-height:170px;border:1px dashed #777d65;border-radius:10px;background:radial-gradient(ellipse at 50% 0%,#d7ff6410,transparent 65%),#151612;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;padding:18px;cursor:pointer;transition:border-color .2s,background .2s}.drop-zone:hover,.drop-zone.dragover{border-color:var(--lime);background:#20251a}.drop-icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:25px;color:#111;background:var(--lime)}.drop-zone strong{font-size:12px}.drop-zone small,.selected-file{font-size:10px;color:var(--muted);overflow-wrap:anywhere}.text-field{width:100%;padding:14px 15px;background:#121310;border:1px solid #ffffff20;color:var(--text);outline:none;font:inherit;font-size:13px;border-radius:7px}.text-field:focus{border-color:var(--lime);box-shadow:0 0 0 3px #d7ff6414}.text-field:focus{border-color:var(--lime)}.text-field option{background:#191a17}.text-area{min-height:80px;resize:vertical}.upload-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px;flex-wrap:wrap}.form-status{min-height:16px;margin:10px 0 0!important;font-size:11px!important;color:var(--lime)!important}.uploaded-media{width:100%;height:100%;object-fit:cover;display:block}.remove-upload{position:absolute;z-index:3;left:14px;top:14px;background:#111c;color:#fff;border:1px solid #ffffff66;padding:8px 10px;font-size:10px;opacity:0;transition:opacity .2s}.viewer-mode #openUpload,.viewer-mode .remove-upload{display:none!important}.viewer-mode .upload-tip{display:none}.viewer-mode .project-open{opacity:1;transform:none}.uploaded-work:hover .remove-upload{opacity:1}.modal-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.modal-tags span{border:1px solid var(--line);padding:8px 10px;font-size:10px;color:var(--lime)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-18px) rotate(5deg)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes pop{from{opacity:0;transform:translateY(15px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:760px){.modal{padding:10px}.modal-box{padding:24px 18px;max-height:94dvh}.modal-box h3{font-size:28px;letter-spacing:-1px}.preview-media,.preview-image{max-height:55dvh}.project-meta{align-items:flex-start}.project-actions{flex-direction:column;align-items:stretch}.view-work{padding:9px 10px;font-size:10px}.project-number{display:none}.upload-actions .btn{flex:1;justify-content:center}body{cursor:auto}.cursor{display:none}button{cursor:pointer}.wrap{width:calc(100% - 36px)}.work-toolbar{flex-direction:column;align-items:stretch}.upload-trigger{align-self:flex-start}.remove-upload{opacity:1}.nav{height:68px}.navlinks{gap:14px;font-size:10px}.navlinks a:nth-child(2){display:none}.availability{display:none}.hero{grid-template-columns:1fr;padding:70px 0 85px;min-height:auto}.hero h1{font-size:clamp(68px,17vw,120px)}.hero-art{height:320px;margin-top:25px}.orb{width:230px}.floating-tag{left:7%;top:12%}.orbit-label{right:5%}.hero-index{bottom:15px}.section-head{align-items:flex-start;flex-direction:column}.section-note{max-width:400px}.projects{grid-template-columns:1fr;gap:30px}.project-visual{aspect-ratio:1.15}.about-grid{grid-template-columns:1fr;gap:40px}section{padding:75px 0}.contact{padding:70px 0}.contact-row{align-items:flex-start;flex-direction:column}footer{flex-direction:column}.navlinks a{font-size:9px}.brand-circle{width:220px;height:220px}.flower{transform:translate(-50%,-50%) scale(.8)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="noise"></div><div class="cursor" id="cursor"></div>
+<div class="wrap">
+  <nav class="nav">
+    <a class="logo" href="#top">STUDIO<span>®</span></a>
+    <div class="navlinks"><a href="#work">作品 WORK</a><a href="#about">关于 ABOUT</a><a href="#contact">联系 CONTACT</a></div>
+    <div class="availability"><i class="dot"></i> AVAILABLE FOR PROJECTS</div>
+  </nav>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">独立创作者 · 视觉实验室</div>
+        <h1>MAKE<br><span class="outline">IT</span> <span class="lime">MOVE.</span></h1>
+        <p class="intro">把想法变成有记忆点的视觉体验。专注视频剪辑、3D 视觉、AI 创作与品牌设计，在画面、节奏和细节之间寻找新的可能。</p>
+        <div class="hero-actions"><a class="btn primary magnetic" href="#work">探索作品 <span class="arrow">↘</span></a><a class="btn" href="#about">认识创作者 <span class="arrow">↗</span></a></div>
+      </div>
+      <div class="hero-art" aria-label="抽象动态球体">
+        <div class="floating-tag">CREATIVE MODE: ON</div><div class="orb" id="orb"></div><div class="orbit-label">IDEAS IN MOTION — 2026</div>
+      </div>
+      <div class="hero-index"><span>SCROLL TO EXPLORE ↓</span><span>DESIGN / MOTION / EXPERIMENT</span><span>01 — 04</span></div>
+    </section>
+  </main>
+</div>
+<div class="marquee"><div class="marquee-track"><span>VIDEO EDITING</span><span class="star">✳</span><span>3D VISUALS</span><span class="star">✳</span><span>AI CREATION</span><span class="star">✳</span><span>BRAND DESIGN</span><span class="star">✳</span><span>VIDEO EDITING</span><span class="star">✳</span><span>3D VISUALS</span><span class="star">✳</span><span>AI CREATION</span><span class="star">✳</span><span>BRAND DESIGN</span><span class="star">✳</span></div></div>
+<div class="wrap">
+<section id="work">
+  <div class="section-head reveal"><div><div class="kicker">01 / SELECTED WORK</div><h2 class="section-title">精选作品<span style="color:var(--lime)">.</span><br>SELECTED WORK</h2></div><p class="section-note">这里展示不同方向的视觉实验。点击项目卡片，查看项目简介与创作方向。示例项目可替换成你自己的真实作品。</p></div>
+  <div class="work-toolbar reveal">
+    <div class="filters" role="group" aria-label="作品分类筛选">
+      <button class="filter active" data-filter="all">全部作品 / ALL</button><button class="filter" data-filter="video">视频剪辑 / VIDEO</button><button class="filter" data-filter="3d">3D 视觉 / 3D</button><button class="filter" data-filter="ai">AI 创作 / AI</button><button class="filter" data-filter="brand">品牌设计 / BRAND</button>
+    </div><button class="btn upload-trigger" id="openUpload">＋ 上传作品</button>
+  </div><p class="upload-tip" id="uploadTip">可以添加图片或视频作品；新增内容会保存在这台设备的浏览器中。手机查看请使用发布后的网址。</p>
+  <div class="projects">
+    <article class="project reveal" data-category="video" data-title="Motion / 动态剪辑" data-description="以节奏、转场和声音设计构建画面情绪。适合展示短视频广告、产品宣传、品牌短片与社交媒体内容。" data-tags="剪辑节奏,转场设计,声音设计">
+      <div class="project-visual"><div class="art art-video"><div class="bigtype">CUT<br><span>THE</span><br>NOISE.</div><div class="play">▶</div></div><div class="project-open">↗</div></div><div class="project-meta"><div><div class="project-title">MOTION / 动态剪辑</div><div class="project-type">VIDEO EDITING · 2026</div></div><span class="project-number">01</span></div>
+    </article>
+    <article class="project reveal" data-category="3d" data-title="Object / 3D 视觉" data-description="探索材质、灯光、构图与空间感，用三维视觉建立产品的质感和氛围。可替换为你的 Blender、C4D 或 ZBrush 作品。" data-tags="3D 渲染,材质灯光,产品视觉">
+      <div class="project-visual"><div class="art art-3d"><div class="glass"></div><div class="tiny">FORM STUDY — 003</div></div><div class="project-open">↗</div></div><div class="project-meta"><div><div class="project-title">OBJECT / 3D 视觉</div><div class="project-type">3D ART · LOOK DEVELOPMENT</div></div><span class="project-number">02</span></div>
+    </article>
+    <article class="project reveal" data-category="ai" data-title="Synthetic Bloom / AI 创作" data-description="结合生成式工具与人工筛选，探索超现实的色彩、形态和视觉叙事。建议在此放置 AI 图像、视频实验或创意分镜。" data-tags="AI 视觉,概念探索,动态实验">
+      <div class="project-visual"><div class="art art-ai"><div class="caption">SYNTHETIC<br>BLOOM_</div><div class="flower" id="flower"></div></div><div class="project-open">↗</div></div><div class="project-meta"><div><div class="project-title">SYNTHETIC BLOOM / AI 创作</div><div class="project-type">GENERATIVE ART · 2026</div></div><span class="project-number">03</span></div>
+    </article>
+    <article class="project reveal" data-category="brand" data-title="Form / 品牌视觉" data-description="从品牌识别到版式系统，构建统一、清晰且具有辨识度的视觉语言。可以替换为名片、包装、海报或品牌规范项目。" data-tags="视觉识别,版式设计,品牌系统">
+      <div class="project-visual"><div class="art art-brand"><div class="brand-circle"></div><div class="brand-word">FORM<span>OBJECTS FOR EVERYDAY</span></div></div><div class="project-open">↗</div></div><div class="project-meta"><div><div class="project-title">FORM / 品牌视觉</div><div class="project-type">IDENTITY · ART DIRECTION</div></div><span class="project-number">04</span></div>
+    </article>
+  </div>
+</section>
+<section id="about">
+  <div class="section-head reveal"><div><div class="kicker">02 / A LITTLE ABOUT ME</div><h2 class="section-title">不止于<br>一个画面<span style="color:var(--lime)">.</span></h2></div></div>
+  <div class="about-grid">
+    <div class="reveal"><div class="about-copy">我关注的不只是画面本身，而是如何让<em>想法、节奏与视觉</em>共同产生影响。</div><p class="about-small">从视频剪辑到 AI 视觉实验，从三维空间到平面设计，我喜欢不断尝试新的工具与表达方式。这里是我的数字工作台，也是持续更新的创作档案。</p></div>
+    <div class="skill-list reveal"><div class="skill"><span>视频剪辑 / Motion</span><span>EDIT · STORY · SOUND</span></div><div class="skill"><span>三维视觉 / 3D</span><span>MODEL · LIGHT · RENDER</span></div><div class="skill"><span>AI 视觉 / Generative</span><span>IMAGE · VIDEO · CONCEPT</span></div><div class="skill"><span>平面与品牌 / Design</span><span>LAYOUT · IDENTITY</span></div></div>
+  </div>
+</section>
+</div>
+<section class="contact" id="contact"><div class="wrap"><div class="kicker">03 / HAVE A GOOD IDEA?</div><div class="contact-row"><div><h2 class="contact-title">LET'S MAKE<br>IT REAL<span style="color:#fff">.</span></h2><p class="contact-text">有项目想法、合作机会，或者只是想聊聊创意？欢迎联系我。把下面的示例邮箱替换成你的真实联系方式。</p></div><div><button class="btn magnetic" id="copyEmail">复制邮箱 <span class="arrow">↗</span></button><p id="copyHint" style="font-size:11px;margin-top:12px">hello@yourportfolio.com</p></div></div></div></section>
+<div class="wrap"><footer><span>© 2026 STUDIO® — PERSONAL PORTFOLIO</span><div class="socials"><a href="#top">BACK TO TOP ↑</a><a href="#work">WORK</a><a href="#contact">CONTACT</a></div><span>MADE WITH CURIOSITY.</span></footer></div>
+<div class="modal" id="uploadModal" role="dialog" aria-modal="true" aria-labelledby="uploadTitle"><div class="modal-box upload-box"><button class="modal-close" id="closeUpload" aria-label="关闭">×</button><div class="kicker">ADD NEW WORK</div><h3 id="uploadTitle">上传你的作品<span style="color:var(--lime)">.</span></h3><p>选择图片或视频，填写作品名称和分类，保存后会同步到云端，访客可通过公开网址查看。</p><form id="uploadForm"><label class="field-label" for="workFile">作品文件（图片 / 视频）</label><label class="drop-zone" for="workFile" id="dropZone"><span class="drop-icon">↥</span><strong>点击选择文件，或拖拽到这里</strong><small>支持 JPG、PNG、WEBP、GIF、MP4、WEBM、MOV</small><span id="selectedFile" class="selected-file">尚未选择文件</span></label><input id="workFile" type="file" accept="image/*,video/mp4,video/webm,video/quicktime" required hidden><label class="field-label" for="workName">作品名称</label><input class="text-field" id="workName" type="text" maxlength="70" placeholder="例如：产品宣传片 / 3D 产品渲染" required><label class="field-label" for="workCategory">作品分类</label><select class="text-field" id="workCategory"><option value="video">视频剪辑 / VIDEO</option><option value="3d">3D 视觉 / 3D</option><option value="ai">AI 创作 / AI</option><option value="brand">品牌设计 / BRAND</option></select><label class="field-label" for="workDescription">项目介绍（选填）</label><textarea class="text-field text-area" id="workDescription" maxlength="500" placeholder="简单介绍创作思路、使用工具或项目目标"></textarea><div class="upload-actions"><button class="btn" type="button" id="cancelUpload">取消</button><button class="btn primary" type="submit">添加到作品集 <span class="arrow">↗</span></button></div><p class="form-status" id="uploadStatus" aria-live="polite"></p></form></div></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><button class="modal-close" id="closeModal" aria-label="关闭">×</button><div class="kicker" id="previewKicker">PROJECT OVERVIEW</div><h3 id="modalTitle">项目标题</h3><video id="previewVideo" class="preview-media" controls playsinline preload="metadata"></video><img id="previewImage" class="preview-image" alt="作品预览"><p id="modalDesc"></p><div class="modal-tags" id="modalTags"></div><p class="viewer-note" id="viewerNote">作品预览 · 点击右上角 × 关闭</p></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const cursor=document.getElementById('cursor');
+if(window.matchMedia('(pointer:fine)').matches){
+  window.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+  document.querySelectorAll('a,button,.project,.orb').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+  });
+}
+const orb=document.getElementById('orb');
+const heroArt=document.querySelector('.hero-art');
+heroArt.addEventListener('mousemove',e=>{
+  if(!window.matchMedia('(pointer:fine)').matches)return;
+  const r=heroArt.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  orb.style.transform=`translate(${x*22}px,${y*22}px) rotateX(${-y*16}deg) rotateY(${x*18}deg)`;
+});
+heroArt.addEventListener('mouseleave',()=>orb.style.transform='');
+const flower=document.getElementById('flower');
+for(let i=0;i<9;i++){const p=document.createElement('i');p.className='petal';p.style.transform=`translate(-50%,-100%) rotate(${i*40}deg)`;p.style.filter=`hue-rotate(${i*7}deg)`;flower.appendChild(p)}
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.project').forEach(card=>{
+    const show=f==='all'||card.dataset.category===f;
+    card.style.display=show?'':'none';
+    if(show){card.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:350,easing:'ease-out'})}
+  });
+}));
+// Cloud portfolio: set these two public project values in this file before deployment.
+// Never put a Supabase service_role/secret key in a browser file.
+const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+const supabaseReady = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
+const supabaseClient = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const queryParams = new URLSearchParams(location.search);
+// Support both the documented ?admin=1 link and the user's ?edit=1 link.
+const editRoute = queryParams.get('edit') === '1';
+const adminRoute = editRoute || queryParams.get('admin') === '1';
+// ?edit=1 opens the upload interface directly; actual cloud saving still requires Supabase setup.
+let editMode = editRoute;
+if (!editMode) document.body.classList.add('viewer-mode');
+const uploadTrigger=document.getElementById('openUpload');
+if (uploadTrigger) { if (!adminRoute) uploadTrigger.hidden=true; else { uploadTrigger.hidden=false; uploadTrigger.textContent=editMode ? '＋ 上传作品' : '管理员登录'; } }
+const modal=document.getElementById('modal');
+const previewVideo=document.getElementById('previewVideo'), previewImage=document.getElementById('previewImage');
+const tagsBox=document.getElementById('modalTags');
+function openProject(card, mediaUrl='', mediaType=''){
+  document.getElementById('modalTitle').textContent=card.dataset.title || '作品预览';
+  document.getElementById('modalDesc').textContent=card.dataset.description || '';
+  tagsBox.innerHTML='';
+  (card.dataset.tags || '').split(',').filter(Boolean).forEach(t=>{const tag=document.createElement('span');tag.textContent=t;tagsBox.appendChild(tag)});
+  previewVideo.pause(); previewVideo.removeAttribute('src'); previewVideo.load(); previewVideo.classList.remove('active');
+  previewImage.removeAttribute('src'); previewImage.classList.remove('active');
+  if(mediaUrl && mediaType.startsWith('video/')){previewVideo.src=mediaUrl;previewVideo.classList.add('active');document.getElementById('previewKicker').textContent='VIDEO PREVIEW';}
+  else if(mediaUrl && mediaType.startsWith('image/')){previewImage.src=mediaUrl;previewImage.classList.add('active');document.getElementById('previewKicker').textContent='IMAGE PREVIEW';}
+  else {document.getElementById('previewKicker').textContent='PROJECT OVERVIEW';}
+  modal.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeProject(){modal.classList.remove('open');document.body.style.overflow='';previewVideo.pause();}
+document.querySelectorAll('.project').forEach(card=>{
+  const meta=card.querySelector('.project-meta');
+  if(meta && !meta.querySelector('.project-actions')){
+    const original=meta.firstElementChild;
+    if(original) original.classList.add('project-meta-main');
+    const actions=document.createElement('div');actions.className='project-actions';
+    const view=document.createElement('button');view.type='button';view.className='view-work';view.innerHTML='查看作品 <span class="arrow">↗</span>';
+    actions.appendChild(view);meta.appendChild(actions);
+    view.addEventListener('click',ev=>{ev.stopPropagation();openProject(card,card.dataset.mediaUrl||'',card.dataset.mediaType||'')});
+  }
+  card.addEventListener('click',ev=>{if(ev.target.closest('button'))return;openProject(card,card.dataset.mediaUrl||'',card.dataset.mediaType||'')});
+});
+document.getElementById('closeModal').addEventListener('click',closeProject);
+modal.addEventListener('click',e=>{if(e.target===modal)closeProject()});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'){closeProject();hideUpload()}});
+const copyBtn=document.getElementById('copyEmail'),copyHint=document.getElementById('copyHint');
+copyBtn.addEventListener('click',async()=>{const email='hello@yourportfolio.com';try{await navigator.clipboard.writeText(email);copyHint.textContent='已复制邮箱：'+email}catch(e){copyHint.textContent='请手动复制：'+email}});
+
+// Cloud storage: public reads, authenticated admin writes, enforced by Supabase RLS.
+const uploadModal=document.getElementById('uploadModal'), uploadForm=document.getElementById('uploadForm'), fileInput=document.getElementById('workFile'), selectedFile=document.getElementById('selectedFile'), dropZone=document.getElementById('dropZone');
+let selectedUpload=null, uploadCounter=5, cloudWorks=[];
+function showUpload(){if(!editMode)return;uploadModal.classList.add('open');document.body.style.overflow='hidden'}
+function hideUpload(){uploadModal.classList.remove('open');document.body.style.overflow='';document.getElementById('uploadStatus').textContent=''}
+if(uploadTrigger && adminRoute){uploadTrigger.addEventListener('click',async()=>{
+  if(editMode){showUpload();return;}
+  if(!supabaseReady){alert('请先在 index.html 中填写 Supabase 项目 URL 和 Publishable/anon key，再部署网站。');return;}
+  const email=prompt('管理员邮箱：'); if(!email)return;
+  const password=prompt('管理员密码：'); if(!password)return;
+  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+  if(error){alert('登录失败：'+error.message);return;}
+  editMode=true; document.body.classList.remove('viewer-mode'); uploadTrigger.textContent='＋ 上传作品'; uploadTrigger.onclick=null; uploadTrigger.addEventListener('click',showUpload); document.getElementById('uploadTip').textContent='已登录管理模式：上传与删除操作会同步到云端。';
+  await restoreWorks();
+});}
+if(adminRoute){document.getElementById('closeUpload').addEventListener('click',hideUpload);document.getElementById('cancelUpload').addEventListener('click',hideUpload);uploadModal.addEventListener('click',e=>{if(e.target===uploadModal)hideUpload()});}
+function setUploadFile(file){if(!file)return;if(!file.type.startsWith('image/')&&!file.type.startsWith('video/')){document.getElementById('uploadStatus').textContent='格式不支持，请选择图片或视频。';return}if(file.size>100*1024*1024){document.getElementById('uploadStatus').textContent='文件超过 100 MB，请先压缩后再上传。';return}selectedUpload=file;selectedFile.textContent=`已选择：${file.name}（${(file.size/1024/1024).toFixed(1)} MB）`;if(!document.getElementById('workName').value.trim())document.getElementById('workName').value=file.name.replace(/\.[^.]+$/,'');document.getElementById('uploadStatus').textContent=''}
+fileInput.addEventListener('change',()=>setUploadFile(fileInput.files[0]));['dragenter','dragover'].forEach(ev=>dropZone.addEventListener(ev,e=>{e.preventDefault();dropZone.classList.add('dragover')}));['dragleave','drop'].forEach(ev=>dropZone.addEventListener(ev,e=>{e.preventDefault();dropZone.classList.remove('dragover')}));dropZone.addEventListener('drop',e=>setUploadFile(e.dataTransfer.files[0]));
+function makeWorkCard(work){
+ const card=document.createElement('article');card.className='project uploaded-work';card.dataset.dbid=work.id;card.dataset.category=work.category;card.dataset.title=work.name;card.dataset.description=work.description||'个人创作项目。';card.dataset.tags=({video:'视频剪辑,动态影像,作品展示','3d':'3D 视觉,建模渲染,作品展示',ai:'AI 创作,视觉实验,作品展示',brand:'品牌设计,视觉识别,作品展示'})[work.category]||'作品展示';
+ const url=work.media_url;card.dataset.mediaUrl=url;card.dataset.mediaType=work.media_type;
+ const visual=document.createElement('div');visual.className='project-visual';let media;if((work.media_type||'').startsWith('video/')){media=document.createElement('video');media.src=url;media.muted=true;media.loop=true;media.playsInline=true;media.preload='metadata';media.addEventListener('loadeddata',()=>{try{media.currentTime=.1}catch(e){}})}else{media=document.createElement('img');media.src=url;media.alt=work.name}media.className='uploaded-media';visual.appendChild(media);const open=document.createElement('div');open.className='project-open';open.textContent='↗';visual.appendChild(open);
+ if(editMode){const remove=document.createElement('button');remove.className='remove-upload';remove.type='button';remove.textContent='删除作品';visual.appendChild(remove);remove.addEventListener('click',async ev=>{ev.stopPropagation();if(confirm('确定删除作品“'+work.name+'”吗？')){const {error:storageError}=await supabaseClient.storage.from('portfolio-media').remove([work.storage_path]);const {error}=await supabaseClient.from('portfolio_works').delete().eq('id',work.id);if(error||storageError){alert('删除失败：'+(error||storageError).message);return;}card.remove();}})}
+ const meta=document.createElement('div');meta.className='project-meta';const info=document.createElement('div'),title=document.createElement('div'),type=document.createElement('div');info.className='project-meta-main';title.className='project-title';title.textContent=work.name;type.className='project-type';type.textContent=({'video':'VIDEO EDITING','3d':'3D VISUALS','ai':'AI CREATION','brand':'BRAND DESIGN'})[work.category]+' · MY WORK';info.append(title,type);const num=document.createElement('span');num.className='project-number';num.textContent=String(uploadCounter++).padStart(2,'0');meta.append(info,num);card.append(visual,meta);const actions=document.createElement('div');actions.className='project-actions';const view=document.createElement('button');view.type='button';view.className='view-work';view.innerHTML='查看作品 <span class="arrow">↗</span>';actions.appendChild(view);meta.appendChild(actions);view.addEventListener('click',ev=>{ev.stopPropagation();openProject(card,url,work.media_type)});card.addEventListener('click',ev=>{if(ev.target.closest('button'))return;openProject(card,url,work.media_type)});document.querySelector('.projects').prepend(card);return card;
+}
+async function restoreWorks(){if(!supabaseReady){if(adminRoute)document.getElementById('uploadTip').textContent='云端尚未配置。请按 README 配置 Supabase 后再上传；现有示例作品仍可浏览。';return;}const {data,error}=await supabaseClient.from('portfolio_works').select('*').order('created_at',{ascending:false});if(error){console.warn(error);return;}document.querySelectorAll('.uploaded-work').forEach(e=>e.remove());(data||[]).forEach(makeWorkCard);if(data&&data.length){document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));document.querySelector('.filter[data-filter="all"]').classList.add('active');}}
+restoreWorks();
+uploadForm.addEventListener('submit',async e=>{e.preventDefault();const status=document.getElementById('uploadStatus');if(!supabaseClient){status.textContent='上传窗口已打开，但云端上传尚未配置。请先设置 Supabase 项目 URL、Publishable/anon key，并完成数据库与存储配置。';return;}if(!editMode){status.textContent='请先登录管理员账号。';return;}if(!selectedUpload){status.textContent='请先选择图片或视频文件。';return;}const name=document.getElementById('workName').value.trim();if(!name){status.textContent='请填写作品名称。';return;}status.textContent='正在上传到云端，请稍候…';const category=document.getElementById('workCategory').value,description=document.getElementById('workDescription').value.trim()||'个人创作项目。';const safeName=selectedUpload.name.replace(/[^a-zA-Z0-9._-]/g,'_');const storagePath=`${crypto.randomUUID()}-${safeName}`;const {error:uploadError}=await supabaseClient.storage.from('portfolio-media').upload(storagePath,selectedUpload,{contentType:selectedUpload.type,upsert:false});if(uploadError){status.textContent='文件上传失败：'+uploadError.message;return;}const {data:publicData}=supabaseClient.storage.from('portfolio-media').getPublicUrl(storagePath);const {data,error}=await supabaseClient.from('portfolio_works').insert({name,category,description,media_type:selectedUpload.type,media_url:publicData.publicUrl,storage_path:storagePath}).select().single();if(error){await supabaseClient.storage.from('portfolio-media').remove([storagePath]);status.textContent='保存作品信息失败：'+error.message;return;}makeWorkCard(data);document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));document.querySelector('.filter[data-filter="all"]').classList.add('active');document.querySelectorAll('.project').forEach(el=>el.style.display='');uploadForm.reset();selectedUpload=null;selectedFile.textContent='尚未选择文件';hideUpload();});
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.querySelectorAll('.magnetic').forEach(el=>{
+  el.addEventListener('mousemove',e=>{if(!window.matchMedia('(pointer:fine)').matches)return;const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.08}px,${(e.clientY-r.top-r.height/2)*.12}px)`});
+  el.addEventListener('mouseleave',()=>el.style.transform='');
+});
+</script>
+</body>
+</html>
