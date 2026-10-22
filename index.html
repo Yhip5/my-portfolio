@@ -154,8 +154,16 @@ function openProject(card, mediaUrl='', mediaType=''){
   (card.dataset.tags || '').split(',').filter(Boolean).forEach(t=>{const tag=document.createElement('span');tag.textContent=t;tagsBox.appendChild(tag)});
   previewVideo.pause(); previewVideo.removeAttribute('src'); previewVideo.load(); previewVideo.classList.remove('active');
   previewImage.removeAttribute('src'); previewImage.classList.remove('active');
-  if(mediaUrl && mediaType.startsWith('video/')){previewVideo.src=mediaUrl;previewVideo.classList.add('active');document.getElementById('previewKicker').textContent='VIDEO PREVIEW';}
-  else if(mediaUrl && mediaType.startsWith('image/')){previewImage.src=mediaUrl;previewImage.classList.add('active');document.getElementById('previewKicker').textContent='IMAGE PREVIEW';}
+ if(mediaUrl && (mediaType === 'video' || mediaType.startsWith('video/'))){
+  previewVideo.src = mediaUrl;
+  previewVideo.classList.add('active');
+  document.getElementById('previewKicker').textContent = 'VIDEO PREVIEW';
+}
+else if(mediaUrl && (mediaType === 'image' || mediaType.startsWith('image/'))){
+  previewImage.src = mediaUrl;
+  previewImage.classList.add('active');
+  document.getElementById('previewKicker').textContent = 'IMAGE PREVIEW';
+}
   else {document.getElementById('previewKicker').textContent='PROJECT OVERVIEW';}
   modal.classList.add('open');document.body.style.overflow='hidden';
 }
@@ -203,7 +211,7 @@ fileInput.addEventListener('change',()=>setUploadFile(fileInput.files[0]));['dra
 function makeWorkCard(work){
  const card=document.createElement('article');card.className='project uploaded-work';card.dataset.dbid=work.id;card.dataset.category=work.category;card.dataset.title=work.name;card.dataset.description=work.description||'个人创作项目。';card.dataset.tags=({video:'视频剪辑,动态影像,作品展示','3d':'3D 视觉,建模渲染,作品展示',ai:'AI 创作,视觉实验,作品展示',brand:'品牌设计,视觉识别,作品展示'})[work.category]||'作品展示';
  const url=work.media_url;card.dataset.mediaUrl=url;card.dataset.mediaType=work.media_type;
- const visual=document.createElement('div');visual.className='project-visual';let media;if((work.media_type||'').startsWith('video/')){media=document.createElement('video');media.src=url;media.muted=true;media.loop=true;media.playsInline=true;media.preload='metadata';media.addEventListener('loadeddata',()=>{try{media.currentTime=.1}catch(e){}})}else{media=document.createElement('img');media.src=url;media.alt=work.name}media.className='uploaded-media';visual.appendChild(media);const open=document.createElement('div');open.className='project-open';open.textContent='↗';visual.appendChild(open);
+ const visual=document.createElement('div');visual.className='project-visual';let media;if(work.media_type === 'video' || (work.media_type||'').startsWith('video/')){media=document.createElement('video');media.src=url;media.muted=true;media.loop=true;media.playsInline=true;media.preload='metadata';media.addEventListener('loadeddata',()=>{try{media.currentTime=.1}catch(e){}})}else{media=document.createElement('img');media.src=url;media.alt=work.name}media.className='uploaded-media';visual.appendChild(media);const open=document.createElement('div');open.className='project-open';open.textContent='↗';visual.appendChild(open);
  if(editMode){const remove=document.createElement('button');remove.className='remove-upload';remove.type='button';remove.textContent='删除作品';visual.appendChild(remove);remove.addEventListener('click',async ev=>{ev.stopPropagation();if(confirm('确定删除作品“'+work.name+'”吗？')){const {error:storageError}=await supabaseClient.storage.from('portfolio-media').remove([work.storage_path]);const {error}=await supabaseClient.from('portfolio_works').delete().eq('id',work.id);if(error||storageError){alert('删除失败：'+(error||storageError).message);return;}card.remove();}})}
  const meta=document.createElement('div');meta.className='project-meta';const info=document.createElement('div'),title=document.createElement('div'),type=document.createElement('div');info.className='project-meta-main';title.className='project-title';title.textContent=work.name;type.className='project-type';type.textContent=({'video':'VIDEO EDITING','3d':'3D VISUALS','ai':'AI CREATION','brand':'BRAND DESIGN'})[work.category]+' · MY WORK';info.append(title,type);const num=document.createElement('span');num.className='project-number';num.textContent=String(uploadCounter++).padStart(2,'0');meta.append(info,num);card.append(visual,meta);const actions=document.createElement('div');actions.className='project-actions';const view=document.createElement('button');view.type='button';view.className='view-work';view.innerHTML='查看作品 <span class="arrow">↗</span>';actions.appendChild(view);meta.appendChild(actions);view.addEventListener('click',ev=>{ev.stopPropagation();openProject(card,url,work.media_type)});card.addEventListener('click',ev=>{if(ev.target.closest('button'))return;openProject(card,url,work.media_type)});document.querySelector('.projects').prepend(card);return card;
 }
