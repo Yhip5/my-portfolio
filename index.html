@@ -145,12 +145,6 @@ if (uploadTrigger) {
 }
 
 const modal = document.getElementById('modal');
-// ?edit=1 opens the upload interface directly; actual cloud saving still requires Supabase setup.
-let editMode = editRoute;
-if (!editMode) document.body.classList.add('viewer-mode');
-const uploadTrigger=document.getElementById('openUpload');
-if (uploadTrigger) { if (!adminRoute) uploadTrigger.hidden=true; else { uploadTrigger.hidden=false; uploadTrigger.textContent=editMode ? '＋ 上传作品' : '管理员登录'; } }
-const modal=document.getElementById('modal');
 const previewVideo=document.getElementById('previewVideo'), previewImage=document.getElementById('previewImage');
 const tagsBox=document.getElementById('modalTags');
 function openProject(card, mediaUrl='', mediaType=''){
@@ -196,7 +190,11 @@ if(uploadTrigger && adminRoute){uploadTrigger.addEventListener('click',async()=>
   const password=prompt('管理员密码：'); if(!password)return;
   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
   if(error){alert('登录失败：'+error.message);return;}
-  editMode=true; document.body.classList.remove('viewer-mode'); uploadTrigger.textContent='＋ 上传作品'; uploadTrigger.onclick=null; uploadTrigger.addEventListener('click',showUpload); document.getElementById('uploadTip').textContent='已登录管理模式：上传与删除操作会同步到云端。';
+editMode = true;
+document.body.classList.remove('viewer-mode');
+uploadTrigger.removeAttribute('data-admin-login');
+uploadTrigger.textContent = '＋ 上传作品';
+document.getElementById('uploadTip').textContent = '已登录管理模式：上传与删除操作会同步到云端。';
   await restoreWorks();
 });}
 if(adminRoute){document.getElementById('closeUpload').addEventListener('click',hideUpload);document.getElementById('cancelUpload').addEventListener('click',hideUpload);uploadModal.addEventListener('click',e=>{if(e.target===uploadModal)hideUpload()});}
