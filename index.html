@@ -125,9 +125,26 @@ const SUPABASE_ANON_KEY = 'sb_publishable_KZCu3yRxZV6zy38z0sPQmg_EWeN4gjE';
 const supabaseReady = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
 const supabaseClient = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const queryParams = new URLSearchParams(location.search);
-// Support both the documented ?admin=1 link and the user's ?edit=1 link.
 const editRoute = queryParams.get('edit') === '1';
-const adminRoute = editRoute || queryParams.get('admin') === '1';
+const adminRoute = queryParams.get('admin') === '1' || editRoute;
+
+let editMode = false;
+
+if (!editMode) document.body.classList.add('viewer-mode');
+
+const uploadTrigger = document.getElementById('openUpload');
+
+if (uploadTrigger) {
+  if (!adminRoute) {
+    uploadTrigger.hidden = true;
+  } else {
+    uploadTrigger.hidden = false;
+    uploadTrigger.dataset.adminLogin = 'true';
+    uploadTrigger.textContent = '管理员登录';
+  }
+}
+
+const modal = document.getElementById('modal');
 // ?edit=1 opens the upload interface directly; actual cloud saving still requires Supabase setup.
 let editMode = editRoute;
 if (!editMode) document.body.classList.add('viewer-mode');
