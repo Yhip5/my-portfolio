@@ -35,7 +35,7 @@ footer{padding:25px 0;display:flex;justify-content:space-between;gap:20px;color:
 <div class="wrap">
   <nav class="nav">
     <a class="logo" href="#top">STUDIO<span>®</span></a>
-    <div class="navlinks"><a href="#work">作品 WORK</a><a href="#about">关于 ABOUT</a><a href="#contact">联系 CONTACT</a></div>
+    <div class="navlinks"><a href="#work">作品 WORK</a><a href="#about">关于 ABOUT</a><a href="#contact">联系 CONTACT</a><a href="./resume.pdf" target="_blank" rel="noopener">简历 RESUME ↗</a></div>
     <div class="availability"><i class="dot"></i> AVAILABLE FOR PROJECTS</div>
   </nav>
   <main id="top">
@@ -44,7 +44,7 @@ footer{padding:25px 0;display:flex;justify-content:space-between;gap:20px;color:
         <div class="eyebrow">独立创作者 · 视觉实验室</div>
         <h1>MAKE<br><span class="outline">IT</span> <span class="lime">MOVE.</span></h1>
         <p class="intro">把想法变成有记忆点的视觉体验。专注视频剪辑、3D 视觉、AI 创作与品牌设计，在画面、节奏和细节之间寻找新的可能。</p>
-        <div class="hero-actions"><a class="btn primary magnetic" href="#work">探索作品 <span class="arrow">↘</span></a><a class="btn" href="#about">认识创作者 <span class="arrow">↗</span></a></div>
+        <div class="hero-actions"><a class="btn primary magnetic" href="#work">探索作品 <span class="arrow">↘</span></a><a class="btn" href="#about">认识创作者 <span class="arrow">↗</span></a><a class="btn resume-download" href="./resume.pdf" download="saidadsp8-resume.pdf">下载简历 PDF <span class="arrow">↓</span></a></div>
       </div>
       <div class="hero-art" aria-label="抽象动态球体">
         <div class="floating-tag">CREATIVE MODE: ON</div><div class="orb" id="orb"></div><div class="orbit-label">IDEAS IN MOTION — 2026</div>
@@ -85,7 +85,7 @@ footer{padding:25px 0;display:flex;justify-content:space-between;gap:20px;color:
   </div>
 </section>
 </div>
-<section class="contact" id="contact"><div class="wrap"><div class="kicker">03 / HAVE A GOOD IDEA?</div><div class="contact-row"><div><h2 class="contact-title">LET'S MAKE<br>IT REAL<span style="color:#fff">.</span></h2><p class="contact-text">有项目想法、合作机会，或者只是想聊聊创意？欢迎联系我。把下面的示例邮箱替换成你的真实联系方式。</p></div><div><button class="btn magnetic" id="copyEmail">复制邮箱 <span class="arrow">↗</span></button><p id="copyHint" style="font-size:11px;margin-top:12px">hello@yourportfolio.com</p></div></div></div></section>
+<section class="contact" id="contact"><div class="wrap"><div class="kicker">03 / HAVE A GOOD IDEA?</div><div class="contact-row"><div><h2 class="contact-title">LET'S MAKE<br>IT REAL<span style="color:#fff">.</span></h2><p class="contact-text">有项目想法、合作机会，或者只是想聊聊创意？欢迎通过邮箱联系我。</p></div><div><button class="btn magnetic" id="copyEmail">复制邮箱 <span class="arrow">↗</span></button><p style="font-size:11px;margin-top:10px"><a href="mailto:saidadsp8@gmail.com">发送邮件：saidadsp8@gmail.com</a></p><p id="copyHint" style="font-size:11px;margin-top:12px">saidadsp8@gmail.com</p></div></div></div></section>
 <div class="wrap"><footer><span>© 2026 STUDIO® — PERSONAL PORTFOLIO</span><div class="socials"><a href="#top">BACK TO TOP ↑</a><a href="#work">WORK</a><a href="#contact">CONTACT</a></div><span>MADE WITH CURIOSITY.</span></footer></div>
 <div class="modal" id="uploadModal" role="dialog" aria-modal="true" aria-labelledby="uploadTitle"><div class="modal-box upload-box"><button class="modal-close" id="closeUpload" aria-label="关闭">×</button><div class="kicker">ADD NEW WORK</div><h3 id="uploadTitle">上传你的作品<span style="color:var(--lime)">.</span></h3><p>选择图片或视频，填写作品名称和分类，保存后会同步到云端，访客可通过公开网址查看。</p><form id="uploadForm"><label class="field-label" for="workFile">作品文件（图片 / 视频）</label><label class="drop-zone" for="workFile" id="dropZone"><span class="drop-icon">↥</span><strong>点击选择文件，或拖拽到这里</strong><small>支持 JPG、PNG、WEBP、GIF、MP4、WEBM、MOV</small><span id="selectedFile" class="selected-file">尚未选择文件</span></label><input id="workFile" type="file" accept="image/*,video/mp4,video/webm,video/quicktime" required hidden><label class="field-label" for="workName">作品名称</label><input class="text-field" id="workName" type="text" maxlength="70" placeholder="例如：产品宣传片 / 3D 产品渲染" required><label class="field-label" for="workCategory">作品分类</label><select class="text-field" id="workCategory"><option value="video">视频剪辑 / VIDEO</option><option value="3d">3D 视觉 / 3D</option><option value="ai">AI 创作 / AI</option><option value="brand">品牌设计 / BRAND</option></select><label class="field-label" for="workDescription">项目介绍（选填）</label><textarea class="text-field text-area" id="workDescription" maxlength="500" placeholder="简单介绍创作思路、使用工具或项目目标"></textarea><div class="upload-actions"><button class="btn" type="button" id="cancelUpload">取消</button><button class="btn primary" type="submit">添加到作品集 <span class="arrow">↗</span></button></div><p class="form-status" id="uploadStatus" aria-live="polite"></p></form></div></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><button class="modal-close" id="closeModal" aria-label="关闭">×</button><div class="kicker" id="previewKicker">PROJECT OVERVIEW</div><h3 id="modalTitle">项目标题</h3><video id="previewVideo" class="preview-media" controls playsinline preload="metadata"></video><img id="previewImage" class="preview-image" alt="作品预览"><p id="modalDesc"></p><div class="modal-tags" id="modalTags"></div><p class="viewer-note" id="viewerNote">作品预览 · 点击右上角 × 关闭</p></div></div>
@@ -184,7 +184,7 @@ document.getElementById('closeModal').addEventListener('click',closeProject);
 modal.addEventListener('click',e=>{if(e.target===modal)closeProject()});
 window.addEventListener('keydown',e=>{if(e.key==='Escape'){closeProject();hideUpload()}});
 const copyBtn=document.getElementById('copyEmail'),copyHint=document.getElementById('copyHint');
-copyBtn.addEventListener('click',async()=>{const email='hello@yourportfolio.com';try{await navigator.clipboard.writeText(email);copyHint.textContent='已复制邮箱：'+email}catch(e){copyHint.textContent='请手动复制：'+email}});
+copyBtn.addEventListener('click',async()=>{const email='saidadsp8@gmail.com';try{await navigator.clipboard.writeText(email);copyHint.textContent='已复制邮箱：'+email}catch(e){copyHint.textContent='请手动复制：'+email}});
 
 // Cloud storage: public reads, authenticated admin writes, enforced by Supabase RLS.
 const uploadModal=document.getElementById('uploadModal'), uploadForm=document.getElementById('uploadForm'), fileInput=document.getElementById('workFile'), selectedFile=document.getElementById('selectedFile'), dropZone=document.getElementById('dropZone');
